@@ -16,7 +16,7 @@
 #'                                     instance.  Requires read and write permissions to this database. On SQL
 #'                                     Server, this should specifiy both the database and the schema,
 #'                                     so for example 'cdm_instance.dbo'.
-#' @param cdmVersion The version of your CDM.  Currently "5.3" and "5.4".
+#' @param cdmVersion The version of your CDM.  Currently "5.3", "5.4" and "6.0".
 #' @param syntheaVersion The version of Synthea used to generate the csv files.
 #'                       Currently "2.7.0" and "3.0.0" are supported.
 #' @param cdmSourceName	The source name to insert into the CDM_SOURCE table.  Default is Synthea synthentic health database.
@@ -45,8 +45,10 @@ LoadEventTables <- function(connectionDetails,
     sqlFilePath <- "cdm_version/v531"
   } else if (cdmVersion == "5.4") {
     sqlFilePath <- "cdm_version/v540"
+  } else if (cdmVersion == "6.0") {
+    sqlFilePath <- "cdm_version/v600"
   } else {
-    stop("Unsupported CDM specified. Supported CDM versions are \"5.3\" and \"5.4\".")
+    stop("Unsupported CDM specified. Supported CDM versions are \"5.3\", \"5.4\" and \"6.0\".")
   }
 
   supportedSyntheaVersions <- c("2.7.0", "3.0.0")
@@ -241,15 +243,17 @@ LoadEventTables <- function(connectionDetails,
   runStep(sql, fileQuery)
 
   # death
-  fileQuery <- "insert_death.sql"
-  sql <- SqlRender::loadRenderTranslateSql(
-    sqlFilename = file.path(sqlFilePath, fileQuery),
-    packageName = "ETLSyntheaBuilder",
-    dbms = connectionDetails$dbms,
-    cdm_schema = cdmSchema,
-    synthea_schema = syntheaSchema
-  )
-  runStep(sql, fileQuery)
+  if (cdmVersion != "6.0") {
+    fileQuery <- "insert_death.sql"
+    sql <- SqlRender::loadRenderTranslateSql(
+      sqlFilename = file.path(sqlFilePath, fileQuery),
+      packageName = "ETLSyntheaBuilder",
+      dbms = connectionDetails$dbms,
+      cdm_schema = cdmSchema,
+      synthea_schema = syntheaSchema
+    )
+    runStep(sql, fileQuery) 
+  }
 
   # payer_plan_period
   fileQuery <- "insert_payer_plan_period.sql"
@@ -259,15 +263,15 @@ LoadEventTables <- function(connectionDetails,
     dbms = connectionDetails$dbms,
     cdm_schema = cdmSchema,
     synthea_schema = syntheaSchema,
-	synthea_version = syntheaVersion
+    synthea_version = syntheaVersion
   )
   runStep(sql, fileQuery)
 
   # cost
   if (syntheaVersion == "2.7.0") 
-	fileQuery <- "insert_cost_v270.sql"
+    fileQuery <- "insert_cost_v270.sql"
   else if (syntheaVersion == "3.0.0")
-	fileQuery <- "insert_cost_v300.sql"
+    fileQuery <- "insert_cost_v300.sql"
   
     sql <- SqlRender::loadRenderTranslateSql(
       sqlFilename = file.path(sqlFilePath, fileQuery),

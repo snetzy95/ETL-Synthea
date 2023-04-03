@@ -8,7 +8,7 @@
 #' @param cdmSchema  The name of the CDM database schema.  Requires read and write permissions to this database. On SQL
 #'                                     Server, this should specifiy both the database and the schema,
 #'                                     so for example 'cdm_instance.dbo'.
-#' @param cdmVersion Your CDM version.  Currently "5.3" and "5.4" are supported.
+#' @param cdmVersion Your CDM version.  Currently "5.3", "5.4" and "6.0" are supported.
 #' @param outputFolder Location of the SQL scripts if sqlOnly = TRUE. Default is NULL.
 #' @param sqlOnly A boolean that determines whether or not to perform the load or generate SQL scripts. Default is FALSE.
 #'
