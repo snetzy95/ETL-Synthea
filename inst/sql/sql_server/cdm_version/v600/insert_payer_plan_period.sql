@@ -1,8 +1,3 @@
--- Code version update from OMOP CDM v5.4 to OMOP CDM v6.0
--- Developed by Bence Nagy (E-Group)
--- Last modification: 2023-03-28
-
--- Code taken from Synthea
 
 INSERT INTO @cdm_schema.payer_plan_period (
     payer_plan_period_id,

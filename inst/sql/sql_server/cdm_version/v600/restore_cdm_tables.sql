@@ -1,26 +1,23 @@
--- Code version update from OMOP CDM v5.4 to OMOP CDM v6.0
--- Developed by Bence Nagy (E-Group)
--- Last modification: 2023-03-28
 
-if object_id('@cdm_schema.concept', 'U') is not null rename object @cdm_schema.concept to concept_old;
-if object_id('@cdm_schema.concept_ancestor', 'U') is not null rename object @cdm_schema.concept_ancestor to concept_ancestor_old;
-if object_id('@cdm_schema.concept_class', 'U') is not null rename object @cdm_schema.concept_class to concept_class_old;
-if object_id('@cdm_schema.concept_relationship', 'U') is not null rename object @cdm_schema.concept_relationship to concept_relationship_old;
-if object_id('@cdm_schema.concept_synonym', 'U') is not null rename object @cdm_schema.concept_synonym to concept_synonym_old;
-if object_id('@cdm_schema.source_to_concept_map', 'U') is not null rename object @cdm_schema.source_to_concept_map to source_to_concept_map_old;
+IF OBJECT_ID('@cdm_schema.concept', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept TO concept_old;
+IF OBJECT_ID('@cdm_schema.concept_ancesTOr', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_ancesTOr TO concept_ancesTOr_old;
+IF OBJECT_ID('@cdm_schema.concept_class', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_class TO concept_class_old;
+IF OBJECT_ID('@cdm_schema.concept_relationship', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_relationship TO concept_relationship_old;
+IF OBJECT_ID('@cdm_schema.concept_synonym', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_synonym TO concept_synonym_old;
+IF OBJECT_ID('@cdm_schema.source_TO_concept_map', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.source_TO_concept_map TO source_TO_concept_map_old;
 
-if object_id('@cdm_schema.concept_orig', 'U') is not null rename object @cdm_schema.concept_orig to concept;
-if object_id('@cdm_schema.concept_ancestor_orig', 'U') is not null rename object @cdm_schema.concept_ancestor_orig to concept_ancestor;
-if object_id('@cdm_schema.concept_class_orig', 'U') is not null rename object @cdm_schema.concept_class_orig to concept_class;
-if object_id('@cdm_schema.concept_relationship_orig', 'U') is not null rename object @cdm_schema.concept_relationship_orig to concept_relationship;
-if object_id('@cdm_schema.concept_synonym_orig', 'U') is not null rename object @cdm_schema.concept_synonym_orig to concept_synonym;
-if object_id('@cdm_schema.source_to_concept_map_orig', 'U') is not null rename object @cdm_schema.source_to_concept_map_orig to source_to_concept_map;
+IF OBJECT_ID('@cdm_schema.concept_orig', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_orig TO concept;
+IF OBJECT_ID('@cdm_schema.concept_ancesTOr_orig', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_ancesTOr_orig TO concept_ancesTOr;
+IF OBJECT_ID('@cdm_schema.concept_class_orig', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_class_orig TO concept_class;
+IF OBJECT_ID('@cdm_schema.concept_relationship_orig', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_relationship_orig TO concept_relationship;
+IF OBJECT_ID('@cdm_schema.concept_synonym_orig', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept_synonym_orig TO concept_synonym;
+IF OBJECT_ID('@cdm_schema.source_TO_concept_map_orig', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.source_TO_concept_map_orig TO source_TO_concept_map;
 
-if object_id('@cdm_schema.concept_old', 'U') is not null drop table @cdm_schema.concept_old;
-if object_id('@cdm_schema.concept_ancestor_old', 'U') is not null drop table @cdm_schema.concept_ancestor_old;
-if object_id('@cdm_schema.concept_class_old', 'U') is not null drop table @cdm_schema.concept_class_old;
-if object_id('@cdm_schema.concept_relationship_old', 'U') is not null drop table @cdm_schema.concept_relationship_old;
-if object_id('@cdm_schema.concept_synonym_old', 'U') is not null drop table @cdm_schema.concept_synonym_old;
-if object_id('@cdm_schema.source_to_concept_map_old', 'U') is not null drop table @cdm_schema.source_to_concept_map_old;
+IF OBJECT_ID('@cdm_schema.concept_old', 'U') IS NOT NULL DROP TABLE @cdm_schema.concept_old;
+IF OBJECT_ID('@cdm_schema.concept_ancesTOr_old', 'U') IS NOT NULL DROP TABLE @cdm_schema.concept_ancesTOr_old;
+IF OBJECT_ID('@cdm_schema.concept_class_old', 'U') IS NOT NULL DROP TABLE @cdm_schema.concept_class_old;
+IF OBJECT_ID('@cdm_schema.concept_relationship_old', 'U') IS NOT NULL DROP TABLE @cdm_schema.concept_relationship_old;
+IF OBJECT_ID('@cdm_schema.concept_synonym_old', 'U') IS NOT NULL DROP TABLE @cdm_schema.concept_synonym_old;
+IF OBJECT_ID('@cdm_schema.source_TO_concept_map_old', 'U') IS NOT NULL DROP TABLE @cdm_schema.source_TO_concept_map_old;
 
 

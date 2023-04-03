@@ -1,8 +1,3 @@
--- Code version update from OMOP CDM v5.4 to OMOP CDM v6.0
--- Developed by Bence Nagy (E-Group)
--- Last modification: 2023-03-28
-
--- Code taken from Synthea
 
 IF OBJECT_ID('@cdm_schema.IP_VISITS', 'U')  IS NOT NULL DROP TABLE @cdm_schema.IP_VISITS;
 IF OBJECT_ID('@cdm_schema.ER_VISITS', 'U')  IS NOT NULL DROP TABLE @cdm_schema.ER_VISITS;

@@ -1,8 +1,3 @@
--- Code version update from OMOP CDM v5.4 to OMOP CDM v6.0
--- Developed by Bence Nagy (E-Group)
--- Last modification: 2023-03-28
-
--- Code taken from Synthea
 
 -- Create mapping table AS per logic in 3.1.2 Source to Standard Terminology
 -- found in Truven_CCAE_and_MDCR_ETL_CDM_V5.2.0.doc

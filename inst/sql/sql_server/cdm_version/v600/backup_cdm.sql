@@ -1,8 +1,3 @@
--- Code version update from OMOP CDM v5.4 TO OMOP CDM v6.0
--- Developed by Bence Nagy (E-Group)
--- Last modification: 2023-03-28
-
--- Code taken from Synthea
 
 IF OBJECT_ID('@cdm_schema.concept_orig', 'U') IS NOT NULL DROP TABLE @cdm_schema.concept_orig;
 IF OBJECT_ID('@cdm_schema.concept', 'U') IS NOT NULL RENAME OBJECT @cdm_schema.concept TO concept_orig;
